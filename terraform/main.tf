@@ -8,7 +8,11 @@ terraform {
   }
   required_version = ">= 1.1.0"
 }
-#Configuracion Azure Provider
+#Configuracion Azure Provider. Deletion de recursos para las pruebas
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+	prevent_deletion_if_contains_resources = false
+    }
+  }
 }
