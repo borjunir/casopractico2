@@ -119,3 +119,28 @@ resource "azurerm_network_interface_security_group_association" "nsgassociation"
   network_interface_id = azurerm_network_interface.NIC.id
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
+
+/// Azure Container Registry ///
+data "azurerm_role_definition" "contributor" {
+  name = "Contributor"
+}
+resource "azurerm_managed_identity" "AMI" {
+  name = "AMI"
+  location = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+resource "azurerm_container_registry" "ContRegistry" {
+  name = "CasoPractico2"
+  location = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name = "Standard"
+    tier = "Standard"
+  }
+}
+resource "azurerm_role_assignment" "RoleAss" {
+  scope = azurerm_container_registry.ContRegistry.id
+  role_definition_id = data.azurerm_role_definition.contributor.id
+  principal_id = azurerm_managed_identity.AMI.principal_id
+}
