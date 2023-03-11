@@ -43,7 +43,7 @@ variable "VirtualMachine" {
       size = "Standard_B2s"
       IP = "10.0.1.10"
       caching = "ReadWrite"
-      storage_account_type = Standard_LRS
+      storage_account_type = "Standard_LRS"
     }
   }
 }
