@@ -58,7 +58,6 @@ resource "azurerm_subnet" "vsubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnetwork.name
   address_prefixes     = ["10.0.1.0/24"]
-  tags = var.tag_resources
 }
 resource "azurerm_network_interface" "NIC" {
   name                = "vNIC"
@@ -101,7 +100,6 @@ resource "azurerm_network_security_rule" "ssh" {
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.sg.name
-  tags = var.tag_resources
 }
 resource "azurerm_network_security_rule" "ingress" {
   name = "Ingress"
@@ -115,5 +113,4 @@ resource "azurerm_network_security_rule" "ingress" {
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.sg.name
-  tags = var.tag_resources
 }
