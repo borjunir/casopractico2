@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
   resource_group_name   = azurerm_resource_group.rg.name
   size                  = var.VirtualMachine.VM.size
   admin_username        = var.ssh_user
-  network_interface_ids = [azurerm_network_interface.example.id]
+  network_interface_ids = [azurerm_network_interface.NIC.id]
   os_disk {
     name              = var.azure_image_name
     caching           = var.VirtualMachine.VM.caching
