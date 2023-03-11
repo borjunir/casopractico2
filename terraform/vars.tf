@@ -23,7 +23,10 @@ variable "ssh_user" {
 /// Descripcion VirtualMachine ///
 variable "azure_image_name" {
   description = "Nombre de la imagen a utilizar"
-  default = "centos-stream-latest"
+  default = "centos-8"
+}
+variable "azure_image_sku" {
+  description = "centos-8-procomputers"
 }
 variable "azure_image_version" {
   description = "Version de la imagen a utilizar"

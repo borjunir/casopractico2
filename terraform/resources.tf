@@ -18,7 +18,7 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
   source_image_reference {
     publisher = var.azure_image_publisher
     offer     = var.azure_image_name
-    sku       = var.azure_image_name
+    sku       = var.azure_image_sku
     version   = var.azure_image_version
   }
   computer_name = var.azure_image_name
