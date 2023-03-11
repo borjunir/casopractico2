@@ -58,3 +58,12 @@ variable "VSubnetName" {
   description = "Sub-Network name"
   default     = "subnet1"
 }
+
+/// Tags ///
+variable "tag_resources" {
+  description = "Tags para todos los recursos"
+  type        = map(string)
+  default = {
+    environment = "casopractico2"
+  }
+}

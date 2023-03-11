@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "rg" {
   name = var.resource_group_name
   location = var.location_name
+  tags = var.tag_resources
 }
 /// Azure Virtual Machine ///
 resource "azurerm_linux_virtual_machine" "VirtualMachine" {
@@ -33,6 +34,7 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
     sku       = var.azure_image_name
     version   = var.azure_image_version
   }
+  tags = var.tag_resources
 }
 
 /// MarketPlace Agreement ///
@@ -49,12 +51,14 @@ resource "azurerm_virtual_network" "vnetwork" {
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  tags = var.tag_resources
 }
 resource "azurerm_subnet" "vsubnet" {
   name                 = var.VSubnetName
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnetwork.name
   address_prefixes     = ["10.0.1.0/24"]
+  tags = var.tag_resources
 }
 resource "azurerm_network_interface" "NIC" {
   name                = "vNIC"
@@ -67,6 +71,15 @@ resource "azurerm_network_interface" "NIC" {
     private_ip_address_allocation = "Static"
     private_ip_address = var.VirtualMachine.VM.IP
   }
+  tags = var.tag_resources
+}
+resource "azurerm_public_ip" "vippublic" {
+  name = "vm-ippublic"
+  location = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method = "Dynamic"
+  sku = "Basic"
+  tags = var.tag_resources
 }
 
 /// Network Sec & Rules ///
@@ -74,6 +87,7 @@ resource "azurerm_network_security_group" "sg" {
   name = "SG"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  tags = var.tag_resources
 }
 resource "azurerm_network_security_rule" "ssh" {
   name = "SSH"
@@ -87,6 +101,7 @@ resource "azurerm_network_security_rule" "ssh" {
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.sg.name
+  tags = var.tag_resources
 }
 resource "azurerm_network_security_rule" "ingress" {
   name = "Ingress"
@@ -100,4 +115,5 @@ resource "azurerm_network_security_rule" "ingress" {
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.sg.name
+  tags = var.tag_resources
 }
