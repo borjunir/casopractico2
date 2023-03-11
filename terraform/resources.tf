@@ -34,6 +34,16 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
     version   = var.azure_image_version
   }
 }
+
+/// MarketPlace Agreement ///
+resource "azurerm_marketplace_agreement" "example" {
+  publisher_id = var.azure_image_publisher
+  offer_id     = var.azure_image_name
+  plan_id      = var.azure_image_name
+  type         = "accepted"
+}
+
+
 /// Network Interface ///
 resource "azurerm_virtual_network" "vnetwork" {
   name                = var.NetworkName
