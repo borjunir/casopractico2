@@ -40,7 +40,6 @@ resource "azurerm_marketplace_agreement" "cognosys" {
   publisher = var.azure_image_publisher
   offer = var.azure_image_name
   plan = var.azure_image_name
-  type = "accepted"
 }
 
 
