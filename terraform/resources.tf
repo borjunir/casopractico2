@@ -69,6 +69,7 @@ resource "azurerm_network_interface" "NIC" {
     subnet_id                     = azurerm_subnet.vsubnet.id
     private_ip_address_allocation = "Static"
     private_ip_address = var.VirtualMachine.VM.IP
+    public_ip_address_id = azurerm_public_ip.vippublic.id
   }
   tags = var.tag_resources
 }
@@ -77,7 +78,7 @@ resource "azurerm_public_ip" "vippublic" {
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method = "Dynamic"
-  sku = "Basic"
+  sku = "Standard"
   tags = var.tag_resources
 }
 
