@@ -37,10 +37,10 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
 
 /// MarketPlace Agreement ///
 resource "azurerm_marketplace_agreement" "cognosys" {
-  publisher_id = var.azure_image_publisher
-  offer_id     = var.azure_image_name
-  plan_id      = var.azure_image_name
-  type         = "accepted"
+  publisher = var.azure_image_publisher
+  offer = var.azure_image_name
+  plan = var.azure_image_name
+  type = "accepted"
 }
 
 
