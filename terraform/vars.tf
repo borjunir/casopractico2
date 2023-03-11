@@ -16,19 +16,45 @@ variable "public_key_path" {
 }
 variable "ssh_user" {
   type = string
-  description = "User SSH"
-  default = "<SSH USER>"
+  description = "Admin User SSH"
+  default = "AzureAdmin"
 }
-/// Descripcion Imagenes ///
-variable "image_name" {
+
+/// Descripcion VirtualMachine ///
+variable "azure_image_name" {
   description = "Nombre de la imagen a utilizar"
-  default = "centos-8-stream-free"
+  default = "centos-stream-latest"
 }
-variable "image_version" {
+variable "azure_image_version" {
   description = "Version de la imagen a utilizar"
   default = "latest"
 }
-variable "image_publisher" {
+variable "azure_image_publisher" {
   description = "MarketPlace Proveedor imagen"
-  default = "Cognosys"
+  default = "procomputers"
+}
+
+/// Caracteristicas VirtualMachine ///
+variable "VirtualMachine" {
+  description = "Caracteristicas de la imagen"
+  type = map(any)
+  default = {
+    "VM" = {
+      size = "Standard_B2s"
+      IP = "10.0.1.10"
+      caching = "ReadWrite"
+      storage_account_type = Standard_LRS
+    }
+  }
+}
+
+/// Netwrok Vars ///
+variable "NetworkName" {
+  description = "Azure Virtual Network name"
+  default     = "vnetwork1"
+}
+
+variable "VSubnetName" {
+  description = "Sub-Network name"
+  default     = "subnet1"
 }
