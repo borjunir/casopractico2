@@ -115,7 +115,7 @@ resource "azurerm_network_security_rule" "ingress" {
   resource_group_name = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
-resource "azurerm_subnet_network_security_group_association" "nsgassociation" {
-  subnet_id = azurerm_subnet.vsubnet.id
+resource "azurerm_network_interface_security_group_association" "nsgassociation" {
+  network_interface_id = azurerm_network_interface.NIC.id
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
