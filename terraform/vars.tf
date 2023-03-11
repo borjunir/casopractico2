@@ -26,7 +26,8 @@ variable "azure_image_name" {
   default = "centos-8"
 }
 variable "azure_image_sku" {
-  description = "centos-8-procomputers"
+  description = "SKU"
+  default = "centos-8-procomputers"
 }
 variable "azure_image_version" {
   description = "Version de la imagen a utilizar"
