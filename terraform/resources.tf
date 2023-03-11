@@ -10,21 +10,28 @@ resource "azurerm_linux_virtual_machine" "VirtualMachine" {
   size                  = var.VirtualMachine.VM.size
   admin_username        = var.ssh_user
   network_interface_ids = [azurerm_network_interface.NIC.id]
+  
   os_disk {
     name              = var.azure_image_name
     caching           = var.VirtualMachine.VM.caching
     storage_account_type = var.VirtualMachine.VM.storage_account_type
   }
-  source_image_reference {
+
+  plan {
+    name = var.azure_image_name
+    product = var.azure_image_name
     publisher = var.azure_image_publisher
-    offer     = var.azure_image_name
-    sku       = var.azure_image_sku
-    version   = var.azure_image_version
   }
-  computer_name = var.azure_image_name
   admin_ssh_key {
     username = var.ssh_user
     public_key = file(var.public_key_path)
+  }
+
+  source_image_reference {
+    publisher = var.azure_image_publisher
+    offer     = var.azure_image_name
+    sku       = var.azure_image_name
+    version   = var.azure_image_version
   }
 }
 /// Network Interface ///

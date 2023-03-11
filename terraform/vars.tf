@@ -23,19 +23,15 @@ variable "ssh_user" {
 /// Descripcion VirtualMachine ///
 variable "azure_image_name" {
   description = "Nombre de la imagen a utilizar"
-  default = "centos-8"
-}
-variable "azure_image_sku" {
-  description = "SKU"
-  default = "centos-8-procomputers"
+  default = "centos-8-stream-free"
 }
 variable "azure_image_version" {
   description = "Version de la imagen a utilizar"
-  default = "latest"
+  default = "22.03.28"
 }
 variable "azure_image_publisher" {
   description = "MarketPlace Proveedor imagen"
-  default = "procomputers"
+  default = "cognosys"
 }
 
 /// Caracteristicas VirtualMachine ///
