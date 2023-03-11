@@ -54,7 +54,7 @@ variable "NetworkName" {
   default     = "vnetwork1"
 }
 
-variable "VSubnetName" {
+variable "vSubnetName" {
   description = "Sub-Network name"
   default     = "subnet1"
 }

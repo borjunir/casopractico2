@@ -47,26 +47,26 @@ resource "azurerm_marketplace_agreement" "cognosys" {
 
 /// Network Interface ///
 resource "azurerm_virtual_network" "vnetwork" {
-  name                = var.NetworkName
-  address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.rg.location
+  name = var.NetworkName
+  address_space = ["10.0.0.0/16"]
+  location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags = var.tag_resources
 }
 resource "azurerm_subnet" "vsubnet" {
-  name                 = var.VSubnetName
+  name = var.vSubnetName
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnetwork.name
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes = ["10.0.1.0/24"]
 }
 resource "azurerm_network_interface" "NIC" {
-  name                = "vNIC"
-  location            = azurerm_resource_group.rg.location
+  name = "vNIC"
+  location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
-    name                          = "ipconfig"
-    subnet_id                     = azurerm_subnet.vsubnet.id
+    name = "ipconfig"
+    subnet_id = azurerm_subnet.vsubnet.id
     private_ip_address_allocation = "Static"
     private_ip_address = var.VirtualMachine.VM.IP
     public_ip_address_id = azurerm_public_ip.vippublic.id
@@ -83,8 +83,8 @@ resource "azurerm_public_ip" "vippublic" {
 }
 
 /// Network Sec & Rules ///
-resource "azurerm_network_security_group" "sg" {
-  name = "SG"
+resource "azurerm_network_security_group" "nsg" {
+  name = "NSG"
   location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags = var.tag_resources
@@ -100,7 +100,7 @@ resource "azurerm_network_security_rule" "ssh" {
   source_address_prefix = "*"
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.sg.name
+  network_security_group_name = azurerm_network_security_group.nsg.name
 }
 resource "azurerm_network_security_rule" "ingress" {
   name = "Ingress"
@@ -113,9 +113,9 @@ resource "azurerm_network_security_rule" "ingress" {
   source_address_prefix = "*"
   destination_address_prefix = "*"
   resource_group_name = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.sg.name
+  network_security_group_name = azurerm_network_security_group.nsg.name
 }
-resource "azurerm_subnet_network_security_group_association" "sgsubnet" {
+resource "azurerm_subnet_network_security_group_association" "nsgassociation" {
   subnet_id = azurerm_subnet.vsubnet.id
-  network_security_group_id = azurerm_network_security_group.sg.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
