@@ -45,7 +45,7 @@ resource "azurerm_marketplace_agreement" "cognosys" {
 }
 
 /// Azure Container Registry ///
-resource "azurerm_container_registry" "acr" {
+resource "azurerm_container_registry" "acrOnlyMe" {
   name = var.acr_name
   resource_group_name = azurerm_resource_group.rg.name
   location = azurerm_resource_group.rg.location

@@ -10,7 +10,7 @@ variable "location_name" {
 }
 variable "acr_name" {
   description = "Nombre Azure Container Registry"
-  default = "acrcp2"
+  default = "acrOnlyMe"
 }
 /// Credenciales ///
 variable "public_key_path" {
