@@ -51,6 +51,7 @@ resource "azurerm_container_registry" "acrOnlyMe" {
   location = azurerm_resource_group.rg.location
   sku = "Basic"
   admin_enabled = true
+  tags = var.tag_resources
 }
 /// Network Interface ///
 resource "azurerm_virtual_network" "vnetwork" {
