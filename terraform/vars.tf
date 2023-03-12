@@ -53,14 +53,14 @@ variable "VirtualMachine" {
 }
 
 /// Netwrok Vars ///
-variable "NetworkName" {
+variable "vNetworkName" {
   description = "Azure Virtual Network name"
-  default     = "vnetwork1"
+  default     = "vNetwork1"
 }
 
 variable "vSubnetName" {
   description = "Sub-Network name"
-  default     = "subnet1"
+  default     = "vSubnet1"
 }
 
 /// Tags ///
