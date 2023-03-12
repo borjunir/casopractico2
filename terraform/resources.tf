@@ -8,14 +8,14 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
   name                  = var.azure_image_name
   location              = azurerm_resource_group.arg.location
   resource_group_name   = azurerm_resource_group.arg.name
-  size                  = var.vMachine.VM.size
+  size                  = var.VirtualMachine.VM.size
   admin_username        = var.ssh_user
   network_interface_ids = [azurerm_network_interface.vNIC.id]
   
   os_disk {
     name              = var.azure_image_name
-    caching           = var.vMachine.VM.caching
-    storage_account_type = var.vMachine.VM.storage_account_type
+    caching           = var.VirtualMachine.VM.caching
+    storage_account_type = var.VirtualMachine.VM.storage_account_type
   }
 
   plan {
