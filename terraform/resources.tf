@@ -76,7 +76,7 @@ resource "azurerm_network_interface" "vNIC" {
     name = "ipconfig"
     subnet_id = azurerm_subnet.vSubnet.id
     private_ip_address_allocation = "Static"
-    private_ip_address = var.vMachine.VM.IP
+    private_ip_address = var.VirtualMachine.VM.IP
     public_ip_address_id = azurerm_public_ip.vIPPublic.id
   }
   tags = var.tag_resources
