@@ -8,6 +8,10 @@ variable "location_name" {
   description = "Region de Azure donde crearemos la infraestructura"
   default = "uksouth"
 }
+variable "acr_name" {
+  description = "Nombre Azure Container Registry"
+  default = "acrcp2"
+}
 /// Credenciales ///
 variable "public_key_path" {
   type = string
