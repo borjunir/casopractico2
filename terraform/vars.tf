@@ -1,40 +1,40 @@
 /// AZURE ///
 variable "resource_group_name" {
   description = "ResourceGroup creado por Terraform"
-  default = "rg-ByTerraform"
+  default     = "rg-ByTerraform"
 }
 variable "location_name" {
-  type = string
+  type        = string
   description = "Region de Azure donde crearemos la infraestructura"
-  default = "uksouth"
+  default     = "uksouth"
 }
 variable "acr_name" {
   description = "Nombre Azure Container Registry"
-  default = "acrOnlyMe"
+  default     = "acrOnlyMe"
 }
 /// Credenciales ///
 variable "public_key_path" {
-  type = string
+  type        = string
   description = "Path clave publica acceso instancias"
-  default = "~/.ssh/id_rsa.pub"
+  default     = "~/.ssh/id_rsa.pub"
 }
 variable "ssh_user" {
-  type = string
+  type        = string
   description = "Admin User SSH"
-  default = "AzureAdmin"
+  default     = "AzureAdmin"
 }
 
 /// OS VirtualMachine ///
 variable "os_image" {
   description = "Nombre de la imagen a utilizar"
-  type = object ({
-    name = string
-    version = string
+  type = object({
+    name      = string
+    version   = string
     publisher = string
   })
   default = {
-    name = "centos-8-stream-free"
-    version = "22.03.28"
+    name      = "centos-8-stream-free"
+    version   = "22.03.28"
     publisher = "cognosys"
   }
 }
@@ -43,12 +43,12 @@ variable "os_image" {
 /// Caracteristicas VirtualMachine ///
 variable "VirtualMachine" {
   description = "Caracteristicas de la imagen"
-  type = map(any)
+  type        = map(any)
   default = {
     "VM" = {
-      size = "Standard_B2s"
-      IP = "10.0.1.10"
-      caching = "ReadWrite"
+      size                 = "Standard_B2s"
+      IP                   = "10.0.1.10"
+      caching              = "ReadWrite"
       storage_account_type = "Standard_LRS"
     }
   }
