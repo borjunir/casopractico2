@@ -1,7 +1,7 @@
 /// AZURE ///
 variable "resource_group_name" {
   description = "ResourceGroup creado por Terraform"
-  default     = "rg-ByTerraform"
+  default     = "rg-CP02UNIR"
 }
 variable "location_name" {
   type        = string
@@ -11,6 +11,39 @@ variable "location_name" {
 variable "acr_name" {
   description = "Nombre Azure Container Registry"
   default     = "acrOnlyMe"
+}
+variable "aks_description" {
+  description = "Descripcion Azure Kubernetes Service"
+  type = object({
+    name = string
+    version = string
+  })
+  default = {
+    name = "aksOnlyMe"
+  }
+}
+variable "aks_specs" {
+  description = "Especificaciones Azure Kubernetes Service"
+  type = object({
+    name = string
+    version = string
+    node_count = string
+    vm_size = string
+    type = string
+    enable_auto_scaling = string
+    load_balancer_sku = string
+    network_plugin = string
+  })
+  default = {
+    enable_auto_scaling = "false"
+    name = "system"
+    kub_version = "1.25.5"
+    node_count = "value"
+    type = "VirtualMachineScaleSets"
+    vm_size = "Standard_DS2_v2"
+    load_balancer_sku = "basic"
+    network_plugin = "kubenet"
+  }
 }
 /// Credenciales ///
 variable "public_key_path" {
@@ -38,7 +71,6 @@ variable "os_image" {
     publisher = "cognosys"
   }
 }
-
 
 /// Caracteristicas VirtualMachine ///
 variable "VirtualMachine" {

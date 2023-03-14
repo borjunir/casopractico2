@@ -3,6 +3,7 @@ resource "azurerm_resource_group" "arg" {
   location = var.location_name
   tags     = var.tag_resources
 }
+
 /// Azure Virtual Machine ///
 resource "azurerm_linux_virtual_machine" "vMachine" {
   name                  = var.os_image.name
@@ -53,6 +54,39 @@ resource "azurerm_container_registry" "acrOnlyMe" {
   admin_enabled       = true
   tags                = var.tag_resources
 }
+
+/// Azure Kubernetes Service ///
+resource "azurerm_kubernetes_cluster" "aksOnlyMe" {
+  name = var.aks_description.name
+  kubernetes_version = var.aks_specs.kub_version
+  location = azurerm_resource_group.arg.location
+  resource_group_name = azurerm_resource_group.arg.name
+  dns_prefix = var.aks_description.name
+
+  default_node_pool {
+    name = var.aks_specs.name
+    node_count = var.aks_specs.node_count
+    vm_size = var.aks_specs.vm_size
+    type = var.aks_specs.type
+    enable_auto_scaling = var.aks_specs.enable_auto_scaling
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  network_profile {
+    load_balancer_sku = var.aks_specs.load_balancer_sku
+    network_plugin = var.aks_specs.network_plugin
+  }
+}
+resource "azurerm_role_assignment" "role_acrpull" {
+  scope = azurerm_container_registry.acrOnlyMe.id
+  role_definition_name = "AcrPull"
+  principal_id = azurerm_kubernetes_cluster.aksOnlyMe.kubelet_identity.0.object_id
+  skip_service_principal_aad_check = true
+}
+
 /// Network Interface ///
 resource "azurerm_virtual_network" "vNetwork" {
   name                = var.vNetworkName
