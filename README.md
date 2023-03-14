@@ -34,3 +34,10 @@ Para poder generar los recursos de forma automatizada, hemos creado una carpeta 
     - Generamos el recurso de ip publica
     - Generamos el grupo de seguridad de red para crear las reglas asociadas para el acceso ssh y web. Como tenemos una ip publica fija, la incluiremos aqui.
     - Generaremos la asociacion entre el grupo de seguridad de red y el recurso de red para que las reglas nombradas arriba se apliquen a la tarjeta.
+
+Antes del despliegue, ejecutaremos los siguientes comandos para mejorar la experiencia:
+- **terraform init**
+- **terraform fmt**: Adaptará los ficheros, ahorrando a terraform apply el trabajo. Si encuentra algún archivo que adaptar, mostrará los adaptados. Lo adecuado sería subir a git, una vez confirmado que el despliegue funciona, desde el nodo de control, esos ficheros adaptados.
+- **terraform validate**: Una segunda capa de confirmacion.
+- **terraform plan -out=casopractico2**: Extrae a un fichero un *plan* para poder usarlo en otros equipos.
+- **terraform apply "casopractico2" -auto-approve**: permite aplicar el plan sin necesidad de confirmacion manual
