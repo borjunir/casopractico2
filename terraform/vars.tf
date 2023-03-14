@@ -24,19 +24,21 @@ variable "ssh_user" {
   default = "AzureAdmin"
 }
 
-/// Descripcion VirtualMachine ///
-variable "azure_image_name" {
+/// OS VirtualMachine ///
+variable "os_image" {
   description = "Nombre de la imagen a utilizar"
-  default = "centos-8-stream-free"
+  type = object ({
+    name = string
+    version = string
+    publisher = string
+  })
+  default = {
+    name = "centos-8-stream-free"
+    version = "22.03.28"
+    publisher = "cognosys"
+  }
 }
-variable "azure_image_version" {
-  description = "Version de la imagen a utilizar"
-  default = "22.03.28"
-}
-variable "azure_image_publisher" {
-  description = "MarketPlace Proveedor imagen"
-  default = "cognosys"
-}
+
 
 /// Caracteristicas VirtualMachine ///
 variable "VirtualMachine" {

@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "arg" {
 }
 /// Azure Virtual Machine ///
 resource "azurerm_linux_virtual_machine" "vMachine" {
-  name                  = var.azure_image_name
+  name                  = var.os_image.name
   location              = azurerm_resource_group.arg.location
   resource_group_name   = azurerm_resource_group.arg.name
   size                  = var.VirtualMachine.VM.size
@@ -13,15 +13,15 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
   network_interface_ids = [azurerm_network_interface.vNIC.id]
   
   os_disk {
-    name              = var.azure_image_name
+    name              = var.os_image.name
     caching           = var.VirtualMachine.VM.caching
     storage_account_type = var.VirtualMachine.VM.storage_account_type
   }
 
   plan {
-    name = var.azure_image_name
-    product = var.azure_image_name
-    publisher = var.azure_image_publisher
+    name = var.os_image.name
+    product = var.os_image.name
+    publisher = var.os_image.publisher
   }
   admin_ssh_key {
     username = var.ssh_user
@@ -29,19 +29,19 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
   }
 
   source_image_reference {
-    publisher = var.azure_image_publisher
-    offer     = var.azure_image_name
-    sku       = var.azure_image_name
-    version   = var.azure_image_version
+    publisher = var.os_image.publisher
+    offer     = var.os_image.name
+    sku       = var.os_image.name
+    version   = var.os_image.version
   }
   tags = var.tag_resources
 }
 
 /// MarketPlace Agreement ///
 resource "azurerm_marketplace_agreement" "cognosys" {
-  publisher = var.azure_image_publisher
-  offer = var.azure_image_name
-  plan = var.azure_image_name
+  publisher = var.os_image.publisher
+  offer = var.os_image.name
+  plan = var.os_image.name
 }
 
 /// Azure Container Registry ///

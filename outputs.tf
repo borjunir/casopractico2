@@ -1,3 +1,3 @@
-output "public_ip_address" {
-  value = azurerm_public_ip.vippublic.ip_address
+output "vIPPublic" {
+  value = azurerm_public_ip.vIPPublic.ip_address
 }
