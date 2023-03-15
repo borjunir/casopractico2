@@ -15,7 +15,7 @@ variable "acr_name" {
 variable "aks_description" {
   description = "Descripcion Azure Kubernetes Service"
   type = object({
-    name    = string
+    name = string
   })
   default = {
     name = "aksOnlyMe"
