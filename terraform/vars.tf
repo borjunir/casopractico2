@@ -15,7 +15,7 @@ variable "acr_name" {
 variable "aks_description" {
   description = "Descripcion Azure Kubernetes Service"
   type = object({
-    name = string
+    name    = string
     version = string
   })
   default = {
@@ -25,24 +25,24 @@ variable "aks_description" {
 variable "aks_specs" {
   description = "Especificaciones Azure Kubernetes Service"
   type = object({
-    name = string
-    version = string
-    node_count = string
-    vm_size = string
-    type = string
+    name                = string
+    version             = string
+    node_count          = string
+    vm_size             = string
+    type                = string
     enable_auto_scaling = string
-    load_balancer_sku = string
-    network_plugin = string
+    load_balancer_sku   = string
+    network_plugin      = string
   })
   default = {
     enable_auto_scaling = "false"
-    name = "system"
-    kub_version = "1.25.5"
-    node_count = "value"
-    type = "VirtualMachineScaleSets"
-    vm_size = "Standard_DS2_v2"
-    load_balancer_sku = "basic"
-    network_plugin = "kubenet"
+    name                = "system"
+    kub_version         = "1.25.5"
+    node_count          = "value"
+    type                = "VirtualMachineScaleSets"
+    vm_size             = "Standard_DS2_v2"
+    load_balancer_sku   = "basic"
+    network_plugin      = "kubenet"
   }
 }
 /// Credenciales ///
