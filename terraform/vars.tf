@@ -37,7 +37,7 @@ variable "aks_specs" {
     enable_auto_scaling = "false"
     name                = "system"
     kub_version         = "1.25.5"
-    node_count          = "value"
+    node_count          = "1"
     type                = "VirtualMachineScaleSets"
     vm_size             = "Standard_DS2_v2"
     load_balancer_sku   = "basic"
