@@ -16,7 +16,6 @@ variable "aks_description" {
   description = "Descripcion Azure Kubernetes Service"
   type = object({
     name    = string
-    version = string
   })
   default = {
     name = "aksOnlyMe"
@@ -26,7 +25,7 @@ variable "aks_specs" {
   description = "Especificaciones Azure Kubernetes Service"
   type = object({
     name                = string
-    version             = string
+    kub_version         = string
     node_count          = string
     vm_size             = string
     type                = string
