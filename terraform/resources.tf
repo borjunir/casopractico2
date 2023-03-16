@@ -19,11 +19,6 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
     storage_account_type = var.VirtualMachine.VM.storage_account_type
   }
 
-  plan {
-    name      = var.os_image.name
-    product   = var.os_image.name
-    publisher = var.os_image.publisher
-  }
   admin_ssh_key {
     username   = var.ssh_user
     public_key = file(var.public_key_path)
@@ -31,7 +26,7 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
 
   source_image_reference {
     publisher = var.os_image.publisher
-    offer     = var.os_image.name
+    offer     = var.os_image.offer
     sku       = var.os_image.sku
     version   = var.os_image.version
   }

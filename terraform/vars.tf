@@ -60,16 +60,17 @@ variable "ssh_user" {
 variable "os_image" {
   description = "Nombre de la imagen a utilizar"
   type = object({
-    name      = string
+    offer      = string
     version   = string
     publisher = string
     sku       = string
   })
   default = {
-    name      = "0001-com-ubuntu-minimal-jammy"
+    offer      = "0001-com-ubuntu-minimal-focal"
+    name = "Ubuntu-20.04"
     version   = "latest"
-    publisher = "canonical"
-    sku       = "minimal-22_04-lts-ARM"
+    publisher = "Canonical"
+    sku       = "20_04-lts-gen2"
   }
 }
 
