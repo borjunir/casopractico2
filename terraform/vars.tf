@@ -63,13 +63,13 @@ variable "os_image" {
     name      = string
     version   = string
     publisher = string
-    sku = string
+    sku       = string
   })
   default = {
     name      = "0001-com-ubuntu-minimal-jammy"
     version   = "latest"
     publisher = "canonical"
-    sku = "minimal-22_04-lts-ARM"
+    sku       = "minimal-22_04-lts-ARM"
   }
 }
 
