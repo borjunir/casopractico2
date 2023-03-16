@@ -39,7 +39,7 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
 }
 
 /// MarketPlace Agreement ///
-resource "azurerm_marketplace_agreement" "cognosys" {
+resource "azurerm_marketplace_agreement" "canonical" {
   publisher = var.os_image.publisher
   offer     = var.os_image.name
   plan      = var.os_image.name
