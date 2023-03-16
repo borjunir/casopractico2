@@ -67,11 +67,11 @@ variable "os_image" {
     sku       = string
   })
   default = {
-    offer     = "0001-com-ubuntu-minimal-jammy"
+    offer     = "0001-com-ubuntu-minimal-focal"
     name      = "Ubuntu-20.04"
     version   = "latest"
     publisher = "Canonical"
-    sku       = "minimal-22_04-lts-gen2"
+    sku       = "minimal-20_04-lts-gen2"
   }
 }
 
