@@ -63,11 +63,13 @@ variable "os_image" {
     name      = string
     version   = string
     publisher = string
+    sku = string
   })
   default = {
-    name      = "centos-8-stream-free"
-    version   = "22.03.28"
-    publisher = "cognosys"
+    name      = "0001-com-ubuntu-minimal-jammy"
+    version   = "latest"
+    publisher = "canonical"
+    sku = "minimal-22_04-lts-ARM"
   }
 }
 

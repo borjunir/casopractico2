@@ -32,7 +32,7 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
   source_image_reference {
     publisher = var.os_image.publisher
     offer     = var.os_image.name
-    sku       = var.os_image.name
+    sku       = var.os_image.sku
     version   = var.os_image.version
   }
   tags = var.tag_resources
