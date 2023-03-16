@@ -61,7 +61,7 @@ variable "os_image" {
   description = "Nombre de la imagen a utilizar"
   type = object({
     offer     = string
-    name = string
+    name      = string
     version   = string
     publisher = string
     sku       = string
