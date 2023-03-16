@@ -36,7 +36,7 @@ resource "azurerm_linux_virtual_machine" "vMachine" {
 /// MarketPlace Agreement ///
 resource "azurerm_marketplace_agreement" "canonical" {
   publisher = var.os_image.publisher
-  offer     = var.os_image.name
+  offer     = var.os_image.offer
   plan      = var.os_image.name
 }
 
