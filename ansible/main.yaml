@@ -1,0 +1,6 @@
+---
+- name: Gestion vm
+  hosts: webservers
+  tasks:
+    - name: Actualizacion APT y creacion Dirs
+      include_tasks: 00_dirandapt.yaml

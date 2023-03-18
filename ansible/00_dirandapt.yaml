@@ -1,0 +1,27 @@
+---
+- name: 'Creacion Dirs'
+  hosts: webservers
+  remote_user: AzureUser
+  become: true
+  vars_files:
+    - vars/00_vars.yaml
+  tasks:
+    - name: 'Dirs'
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ conf_dirs }}"
+
+    - name: 'actualizacion apt'
+      apt:
+        name: "*"
+        update_cache: true
+        state: latest
+
+    - name: 'Dependencias apt'
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "{{ base_requirements }}"
