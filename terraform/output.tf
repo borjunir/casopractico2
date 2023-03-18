@@ -31,11 +31,11 @@ output "acr_login_server" {
 }
 
 output "admin_username" {
-  value       = azurerm_container_registry.acrOnlyMe.admin_username
-  sensitive   = true
+  value     = azurerm_container_registry.acrOnlyMe.admin_username
+  sensitive = true
 }
 
 output "admin_password" {
-  value       = azurerm_container_registry.acrOnlyMe.admin_password
-  sensitive   = true
+  value     = azurerm_container_registry.acrOnlyMe.admin_password
+  sensitive = true
 }

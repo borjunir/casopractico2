@@ -74,7 +74,7 @@ resource "azurerm_kubernetes_cluster" "aksOnlyMe" {
     load_balancer_sku = var.aks_specs.load_balancer_sku
     network_plugin    = var.aks_specs.network_plugin
   }
-  tags                = var.tag_resources
+  tags = var.tag_resources
 }
 #resource "azurerm_role_assignment" "role_acrpull" {
 #  scope                            = azurerm_container_registry.acrOnlyMe.id
