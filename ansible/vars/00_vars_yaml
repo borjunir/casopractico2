@@ -1,0 +1,3 @@
+zone: 'Europe/Madrid'
+rpms: 'httpd'
+mensaje: 'tal cual'

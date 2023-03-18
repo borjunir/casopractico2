@@ -1,0 +1,16 @@
+---
+- name: 'First'
+  hosts: webservers
+  remote_user: admin
+  become: true
+  vars_files:
+    - vars/00_vars.yaml
+  tasks:
+    - name: 'Task_1'
+      timezone:
+        name: "{{ zone }}"
+        
+    - name: 'Task_2'
+      apt:
+        name: "{{ rpms }}"
+        state: latest
