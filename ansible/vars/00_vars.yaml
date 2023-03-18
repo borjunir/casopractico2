@@ -1,21 +1,16 @@
 ---
-base_requirements:
+packages_apt:
   - "podman"
   - "openssl"
+  - "python3-apt"
   - "python3-passlib"
   - "python3-pip"
-  - "neovim"
 
-pip_requirements:
+packages_pip:
   - "kubernetes>=12.0.0"
-  - "PyYAML>=3.11.0"
-  - "jsonpatch"
 
-base_conf_dir: "/home/{{ vm_admin_user }}/web_config"
-html_dir: "{{ base_config_dir }}/html"
+vm_user: "AzureUser"
+base_conf_dir: "/home/{{ vm_user }}/web_config"
+html_dir: "{{ base_conf_dir }}/html"
 conf_dirs:
-  - "{{ cert_dir }}"
-  - "{{ nginx_dir }}"
   - "{{ html_dir }}"
-  - "{{ k8s_dir }}"
-  - "{{ k8s_app_dir }}"

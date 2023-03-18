@@ -1,6 +1,7 @@
 ---
 - name: Gestion vm
   hosts: webservers
+  remote_user: AzureUser
   tasks:
     - name: Actualizacion APT y creacion Dirs
       include_tasks: 00_dirandapt.yaml
