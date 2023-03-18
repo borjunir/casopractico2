@@ -1,7 +1,7 @@
 ---
-- name: Gestion vm
+- name: Gestion Maquina Virtual
   hosts: webservers
-  remote_user: AzureUser
+  remote_user: "{{ vm_user }}"
   become: true
   vars_files:
     - vars/00_vars.yaml
