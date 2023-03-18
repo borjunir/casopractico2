@@ -1,9 +1,6 @@
 ---
-- name: actualizacion apt y agregar repo podman
-  apt_repository:
-    repo: "{{ repo_podman }}"
-    state: present
-    filename: "{{ repofile_podman }}"
+- name: actualizacion apt
+  apt:
     update_cache: true
   become: true
   become_user: root

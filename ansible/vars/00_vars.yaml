@@ -1,8 +1,7 @@
 ---
 vm_user: "AzureUser"
-repo_podman: 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_release }}/ /'
-repofile_podman: 'kubic'
 packages_apt:
+  - 'firewalld'
   - 'podman'
   - 'openssl'
   - 'python3-apt'
