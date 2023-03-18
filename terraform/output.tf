@@ -10,18 +10,6 @@ output "vIPPublic" {
   value = azurerm_public_ip.vIPPublic.ip_address
 }
 
-output "aks_id" {
-  value = azurerm_kubernetes_cluster.aksOnlyMe.id
-}
-
-output "aks_fqdn" {
-  value = azurerm_kubernetes_cluster.aksOnlyMe.fqdn
-}
-
-output "aks_node_rg" {
-  value = azurerm_kubernetes_cluster.aksOnlyMe.node_resource_group
-}
-
 output "acr_id" {
   value = azurerm_container_registry.acrOnlyMe.id
 }
@@ -38,4 +26,16 @@ output "admin_username" {
 output "admin_password" {
   value     = azurerm_container_registry.acrOnlyMe.admin_password
   sensitive = true
+}
+
+output "aks_id" {
+  value = azurerm_kubernetes_cluster.aksOnlyMe.id
+}
+
+output "aks_fqdn" {
+  value = azurerm_kubernetes_cluster.aksOnlyMe.fqdn
+}
+
+output "aks_node_rg" {
+  value = azurerm_kubernetes_cluster.aksOnlyMe.node_resource_group
 }

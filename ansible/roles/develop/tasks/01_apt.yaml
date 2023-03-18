@@ -1,0 +1,14 @@
+---
+- name: Refresh de paquetes
+  ansible.builtin.apt:
+    name: "*"
+    update_cache: true
+  become: true
+  become_user: root
+  become_method: sudo
+
+- name: Dependencias apt
+  ansible.builtin.apt:
+    name: "{{ item }}"
+  with_items:
+    - "{{ base_dependencies }}"

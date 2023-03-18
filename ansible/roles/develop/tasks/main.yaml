@@ -1,0 +1,14 @@
+---
+- name: Ajustes relativos al contenedor
+  block:
+    - name: directorio
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ conf_dir }}"
+
+    - ansible.builtin.include_tasks: "01_apt.yaml"
+
+  when:
+    - "'webservers' in group_names"

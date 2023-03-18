@@ -1,0 +1,17 @@
+---
+#relativos al juego con maquina virtual
+#dependencias apt
+base_dependencies:
+  - "podman"
+  - "python3-passlib"
+  - "python3-pip"
+  - "openssl"
+
+pip_dependencies:
+  - "PyYAML>=3.10.0"
+  - "kubernetes>=12.0.0"
+
+base_conf_dir: "/home/{{ vm_user }}/webconf"
+html_dir: "{{ base_config_dir }}/html"
+conf_dir:
+  - "{{ html_dir }}"
