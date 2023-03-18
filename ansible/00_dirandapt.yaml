@@ -1,12 +1,8 @@
 ---
-- name: 'Creacion Dirs'
-  hosts: webservers
-  remote_user: "{{ vm_user }}" 
-  become: true
+- name: 'Gestion Maquina Virtual'
   vars_files:
     - vars/00_vars.yaml
   tasks:
-
     - name: 'Dirs'
       file:
         path: "{{ item }}"
@@ -17,8 +13,11 @@
     - name: 'actualizacion apt'
       apt:
         name: "*"
-        update_cache: true
+        update_cache: yes
         state: latest
+      become: true
+      become_user: root
+      become_method: sudo
 
     - name: 'Dependencias apt'
       apt:
@@ -26,3 +25,6 @@
         state: present
       with_items:
         - "{{ base_requirements }}"
+      become: true
+      become_user: root
+      become_method: sudo
