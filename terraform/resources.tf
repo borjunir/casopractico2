@@ -74,13 +74,14 @@ resource "azurerm_kubernetes_cluster" "aksOnlyMe" {
     load_balancer_sku = var.aks_specs.load_balancer_sku
     network_plugin    = var.aks_specs.network_plugin
   }
+  tags                = var.tag_resources
 }
-resource "azurerm_role_assignment" "role_acrpull" {
-  scope                            = azurerm_container_registry.acrOnlyMe.id
-  role_definition_name             = "AcrPull"
-  principal_id                     = azurerm_kubernetes_cluster.aksOnlyMe.kubelet_identity[0].object_id
-  skip_service_principal_aad_check = true
-}
+#resource "azurerm_role_assignment" "role_acrpull" {
+#  scope                            = azurerm_container_registry.acrOnlyMe.id
+#  role_definition_name             = "AcrPull"
+#  principal_id                     = azurerm_kubernetes_cluster.aksOnlyMe.kubelet_identity[0].object_id
+#  skip_service_principal_aad_check = true
+#}
 
 /// Network Interface ///
 resource "azurerm_virtual_network" "vNetwork" {
@@ -134,7 +135,7 @@ resource "azurerm_network_security_group" "nsg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "*"
+    source_address_prefix      = "85.55.192.161"
     destination_address_prefix = "*"
   }
   security_rule {
