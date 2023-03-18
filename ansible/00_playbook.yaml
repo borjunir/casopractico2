@@ -1,16 +1,20 @@
 ---
 - name: 'First'
   hosts: webservers
-  remote_user: admin
+  remote_user: AzureUser
   become: true
   vars_files:
     - vars/00_vars.yaml
   tasks:
-    - name: 'Task_1'
+    - name: 'Timezone'
       timezone:
-        name: "{{ zone }}"
-        
-    - name: 'Task_2'
+              name: "{{ zone }}"
+
+    - name: 'Actualizar paquetes'
+      apt:
+        update_cache: yes
+
+    - name: 'Apache'
       apt:
         name: "{{ rpms }}"
-        state: latest
+        state: present
