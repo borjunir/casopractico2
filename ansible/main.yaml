@@ -3,6 +3,8 @@
   hosts: webservers
   remote_user: AzureUser
   become: true
+  vars_files:
+    - vars/00_vars.yaml
   tasks:
     - name: Actualizacion APT y creacion Dirs
-      include_tasks: 00_dirandapt.yaml
+      include_tasks: tasks/00_tarea.yaml

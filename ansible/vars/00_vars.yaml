@@ -1,16 +1,18 @@
 ---
+vm_user: "AzureUser"
+repo_podman: 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_release }}/ /'
+repofile_podman: 'kubic'
 packages_apt:
-  - "podman"
-  - "openssl"
-  - "python3-apt"
-  - "python3-passlib"
-  - "python3-pip"
+  - 'podman'
+  - 'openssl'
+  - 'python3-apt'
+  - 'python3-passlib'
+  - 'python3-pip'
 
 packages_pip:
-  - "kubernetes>=12.0.0"
+  - 'kubernetes>=12.0.0'
 
-vm_user: "AzureUser"
-base_conf_dir: "/home/{{ vm_user }}/web_config"
+base_conf_dir: "/home/{{ web_user }}/web_config"
 html_dir: "{{ base_conf_dir }}/html"
 conf_dirs:
   - "{{ html_dir }}"
