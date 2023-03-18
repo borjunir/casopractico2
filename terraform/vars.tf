@@ -53,7 +53,7 @@ variable "public_key_path" {
 variable "ssh_user" {
   type        = string
   description = "Admin User SSH"
-  default     = "AzureAdmin"
+  default     = "AzureUser"
 }
 
 /// OS VirtualMachine ///
