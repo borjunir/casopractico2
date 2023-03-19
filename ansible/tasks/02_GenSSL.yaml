@@ -1,13 +1,13 @@
 ---
 - name: Cert Privado
   community.crypto.openssl_privatekey:
-    path: "{{ ssl_dir }}/{{ ssl_key }}"
+    path: "{{ webapp_dir }}/{{ ssl_key }}"
     size: 2048
 
 - name: Peticion Firma
   community.crypto.openssl_csr:
-    path: "{{ ssl_dir }}/{{ ssl_csr }}"
-    privatekey_path: "{{ ssl_dir }}/{{ ssl_key }}"
+    path: "{{ webapp_dir }}/{{ ssl_csr }}"
+    privatekey_path: "{{ webapp_dir }}/{{ ssl_key }}"
     country_name: "{{ ssl_country_name }}"
     organization_name: "{{ ssl_org_name }}"
     email_address: "{{ ssl_email_address }}"
@@ -16,7 +16,7 @@
 
 - name: Creacion Certificado Autofirmado
   community.crypto.x509_certificate:
-    path: "{{ ssl_dir }}/{{ ssl_cert }}"
-    privatekey_path: "{{ ssl_dir }}/{{ ssl_key }}"
-    csr_path: "{{ ssl_dir }}/{{ ssl_csr }}"
+    path: "{{ webapp_dir }}/{{ ssl_cert }}"
+    privatekey_path: "{{ webapp_dir }}/{{ ssl_key }}"
+    csr_path: "{{ webapp_dir }}/{{ ssl_csr }}"
     provider: selfsigned
