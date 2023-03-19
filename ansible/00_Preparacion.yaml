@@ -5,6 +5,7 @@
   become: true
   vars_files:
     - vars/00_vars.yaml
+    - vars/secrets.yaml
   tasks:
     - name: Actualizacion APT y creacion Dirs
       include_tasks: tasks/00_GenWebApp.yaml
