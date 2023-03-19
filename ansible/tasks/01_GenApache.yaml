@@ -10,7 +10,7 @@
 - name: htpasswd basic auth
   become: true
   htpasswd:
-    path: "{{ httpd_dir }}/{{ webcred_passwd }}"
+    path: "{{ htpasswd_dir }}/{{ webcred_passwd }}"
     name: "{{ webcred_user }}"
     password: "{{ webcred_pass }}"
     mode: 0644
