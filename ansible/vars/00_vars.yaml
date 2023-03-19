@@ -1,5 +1,6 @@
 ---
 vm_user: "AzureUser"
+web_user: "AzureUser"
 paquetes_requeridos_vm:
   - 'firewalld'
   - 'podman'
