@@ -1,0 +1,22 @@
+---
+- name: fw permitir
+  become: true
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: true
+    inmediate: true
+    state: enabled
+
+- name: htpasswd basic auth
+  become: true
+  htpasswd:
+    path: "{{ basicauth_dir }}/{{ webcred_passwd }}"
+    name: "{{ webcred_user }}"
+    password: "{{ webcred_pass }}"
+    mode: 0644
+
+- name: subir index
+  become: true
+  copy:
+    src: "index.html"
+    dest: "{{ html_dir }}"

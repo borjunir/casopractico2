@@ -9,7 +9,7 @@
   tasks:
     - name: Actualizacion APT y creacion Dirs
       include_tasks: tasks/00_GenWebApp.yaml
-    - name: Generacion nginx
-      include_tasks: tasks/01_GenNginx.yaml
+    - name: Generacion apache
+      include_tasks: tasks/01_GenApache.yaml
     - name: Generacion Certificado
       include_tasks: tasks/02_GenSSL.yaml
