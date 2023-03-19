@@ -26,4 +26,3 @@
   copy:
     src: "{{ inventory_dir }}/files/"
     dest: " {{ apache2_dir }}"
-    exclude: "index.html"
