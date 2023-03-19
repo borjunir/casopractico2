@@ -8,5 +8,9 @@
   tasks:
     - name: Actualizacion APT y creacion Dirs
       include_tasks: tasks/00_GenWebApp.yaml
+    - name: Generacion nginx
+      include_tasks: tasks/01_GenNginx.yaml
+    - name: Generacion Certificado
+      include_tasks: tasks/02_GenSSL.yaml
     - name: Desinstalacion de paquetes que no son ya necesarios
-      include_tasks: tasks/01_DestroyWebApp.yaml
+      include_tasks: tasks/0X_DestroyWebApp.yaml
