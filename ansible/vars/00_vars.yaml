@@ -1,41 +1,31 @@
 ---
-vm_user: "AzureUser"
-web_user: "AzureUser"
+vm_user: "AzUser"
+web_user: "AzUser"
 paquetes_requeridos_vm:
   - 'firewalld'
   - 'podman'
   - 'openssl'
   - 'python3-apt'
   - 'python3-passlib'
-  - 'nginx'
+  - 'httpd'
 
-paquetes_prescindibles_vm:
-  - 'openssl'
-  - 'nginx'
-
-packages_pip:
-  - 'kubernetes>=12.0.0'
-
-#vars
-nginx_user: "operator"
-nginx_web: "nginx_web"
-nginx_passwd: ".passwdfile"
+webcred_user: "operator"
+webcred_passwd: ".passwdfile"
 
 ssl_key: "OnlyMe.key"
 ssl_cert: "OnlyMe.crt"
 ssl_csr: "OnlyMe.csr"
-#ssl_domain: "OnlyMe"
 ssl_country_name: "ES"
 ssl_org_name: "UNIR"
 ssl_org_unit: "DevOpsCloud"
 ssl_common_name: "OnlyMe"
 ssl_email_address: "borja.rodriguezlopezd077@comunidadunir.net"
 
-root_dir: "/home/{{ web_user }}/web_config"
+root_dir: "/home/{{ web_user }}/webapp"
 html_dir: "{{ root_dir }}/html"
-nginx_dir: "{{ root_dir }}/nginx"
+basicauth_dir: "{{ root_dir }}/basicauth"
 ssl_dir: "{{ root_dir }}/ssl"
 conf_dirs:
   - "{{ html_dir }}"
-  - "{{ nginx_dir }}"
+  - "{{ basicauth_dir }}"
   - "{{ ssl_dir }}"
