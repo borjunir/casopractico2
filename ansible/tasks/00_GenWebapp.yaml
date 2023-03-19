@@ -1,17 +1,10 @@
 ---
-- name: actualizacion apt
+- name: Actualizacion apt
   apt:
     update_cache: true
   become: true
   become_user: root
   become_method: sudo
-
-- name: Creacion de directorios
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ conf_dirs }}"
 
 - name: Instalacion de dependencias apt
   apt:
@@ -22,3 +15,10 @@
   become: true
   become_user: root
   become_method: sudo
+
+- name: Creacion de directorios
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ conf_dirs }}"

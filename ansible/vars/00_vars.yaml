@@ -14,6 +14,10 @@ paquetes_prescindibles_vm:
 packages_pip:
   - 'kubernetes>=12.0.0'
 
+#vars
+nginx_user: "operator"
+nginx_web: "nginx_web"
+nginx_passwd: ".passwdfile"
 root_conf_dir: "/home/{{ web_user }}/web_config"
 html_dir: "{{ root_conf_dir }}/html"
 nginx_dir: "{{ root_conf_dir }}/nginx"
