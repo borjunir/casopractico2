@@ -76,12 +76,12 @@ resource "azurerm_kubernetes_cluster" "aksOnlyMe" {
   }
   tags = var.tag_resources
 }
-#resource "azurerm_role_assignment" "role_acrpull" {
-#  scope                            = azurerm_container_registry.acrOnlyMe.id
-#  role_definition_name             = "AcrPull"
-#  principal_id                     = azurerm_kubernetes_cluster.aksOnlyMe.kubelet_identity[0].object_id
-#  skip_service_principal_aad_check = true
-#}
+resource "azurerm_role_assignment" "role_acrpull" {
+  scope                            = azurerm_container_registry.acrOnlyMe.id
+  role_definition_name             = "AcrPull"
+  principal_id                     = azurerm_kubernetes_cluster.aksOnlyMe.kubelet_identity[0].object_id
+  skip_service_principal_aad_check = true
+}
 
 /// Network Interface ///
 resource "azurerm_virtual_network" "vNetwork" {
