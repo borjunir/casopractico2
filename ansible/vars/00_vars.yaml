@@ -1,17 +1,22 @@
 ---
 vm_user: "AzureUser"
-packages_apt:
+paquetes_requeridos_vm:
   - 'firewalld'
   - 'podman'
   - 'openssl'
   - 'python3-apt'
-  - 'python3-passlib'
-  - 'python3-pip'
+  - 'nginx'
+
+paquetes_prescindibles_vm:
+  - 'openssl'
+  - 'nginx'
 
 packages_pip:
   - 'kubernetes>=12.0.0'
 
-base_conf_dir: "/home/{{ web_user }}/web_config"
-html_dir: "{{ base_conf_dir }}/html"
+root_conf_dir: "/home/{{ web_user }}/web_config"
+html_dir: "{{ root_conf_dir }}/html"
+nginx_dir: "{{ root_conf_dir }}/nginx"
 conf_dirs:
   - "{{ html_dir }}"
+  - "{{ nginx_dir }}"

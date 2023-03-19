@@ -6,6 +6,13 @@
   become_user: root
   become_method: sudo
 
+- name: Creacion de directorios
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ conf_dirs }}"
+
 - name: Instalacion de dependencias apt
   apt:
     name: "{{ item }}"
