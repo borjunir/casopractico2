@@ -4,7 +4,7 @@
   htpasswd:
     path: "{{ nginx_dir }}/{{ nginx_passwd }}"
     name: "{{ nginx_user }}"
-    password: "0022*f"
+    password: "{{ nginx_pass }}"
     mode: 0644
 
 - name: subir index

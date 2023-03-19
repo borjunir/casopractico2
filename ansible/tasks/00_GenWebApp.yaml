@@ -22,3 +22,8 @@
     state: directory
   with_items:
     - "{{ conf_dirs }}"
+
+- name: prueba copia
+  copy:
+    scr: "/home/ubuntu/Repositorio/casopractico2/ansible/files/nginx.conf"
+    dest: "/etc/nginx/nginx.conf"
