@@ -18,7 +18,5 @@
 
 - name: Creacion de directorios
   file:
-    path: "{{ item }}"
+    path: "{{ webapp_dir }}"
     state: directory
-  with_items:
-    - "{{ conf_dirs }}"

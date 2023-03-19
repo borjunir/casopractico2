@@ -10,7 +10,7 @@
 - name: htpasswd basic auth
   become: true
   htpasswd:
-    path: "{{ htpasswd_dir }}/{{ webcred_passwd }}"
+    path: "{{ webapp_dir }}/{{ webcred_passwd }}"
     name: "{{ webcred_user }}"
     password: "{{ webcred_pass }}"
     mode: 0644
@@ -19,16 +19,16 @@
   become: true
   copy:
     src: "index.html"
-    dest: "{{ html_dir }}"
+    dest: "{{ webapp_dir }}"
 
 - name: Copia  de ficheros apache
   become: true
   copy:
     src: ".htaccess"
-    dest: "{{ httpd_dir }}"
+    dest: "{{ webapp_dir }}"
 
 - name: Copia  de ficheros apache
   become: true
   copy:
     src: "apache2.conf"
-    dest: "{{ httpd_dir }}"
+    dest: "{{ webapp_dir }}"
