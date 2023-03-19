@@ -15,14 +15,20 @@
     password: "{{ webcred_pass }}"
     mode: 0644
 
-- name: subir index
+- name: Copia index
   become: true
   copy:
     src: "index.html"
     dest: "{{ html_dir }}"
 
-- name: Copia  de ficheros
+- name: Copia  de ficheros apache
   become: true
   copy:
-    src: "{{ inventory_dir }}/files/"
+    src: ".htaccess"
+    dest: " {{ apache2_dir }}"
+
+- name: Copia  de ficheros apache
+  become: true
+  copy:
+    src: "apache2.conf"
     dest: " {{ apache2_dir }}"
