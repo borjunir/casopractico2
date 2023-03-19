@@ -10,7 +10,7 @@
 - name: htpasswd basic auth
   become: true
   htpasswd:
-    path: "{{ basicauth_dir }}/{{ webcred_passwd }}"
+    path: "{{ apache2_dir }}/{{ webcred_passwd }}"
     name: "{{ webcred_user }}"
     password: "{{ webcred_pass }}"
     mode: 0644
@@ -20,3 +20,10 @@
   copy:
     src: "index.html"
     dest: "{{ html_dir }}"
+
+- name: Copia  de ficheros
+  become: true
+  copy:
+    src: "{{ inventory_dir }}/files/"
+    dest: " {{ apache2_dir }}"
+    exclude: "index.html"

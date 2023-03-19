@@ -23,9 +23,9 @@ ssl_email_address: "borja.rodriguezlopezd077@comunidadunir.net"
 
 root_dir: "/home/{{ web_user }}/webapp"
 html_dir: "{{ root_dir }}/html"
-basicauth_dir: "{{ root_dir }}/basicauth"
+apache2_dir: "{{ root_dir }}/apache2"
 ssl_dir: "{{ root_dir }}/ssl"
 conf_dirs:
   - "{{ html_dir }}"
-  - "{{ basicauth_dir }}"
+  - "{{ apache2_dir }}"
   - "{{ ssl_dir }}"
