@@ -1,10 +1,10 @@
 ---
 - name: fw permitir
   become: true
-  ansible.posix.firewalld:
+  firewalld:
     port: 8080/tcp
     permanent: true
-    inmediate: true
+    immediate: true
     state: enabled
 
 - name: htpasswd basic auth

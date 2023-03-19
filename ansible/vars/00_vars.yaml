@@ -1,13 +1,13 @@
 ---
-vm_user: "AzUser"
-web_user: "AzUser"
+vm_user: "AzureUser"
+web_user: "AzureUser"
 paquetes_requeridos_vm:
   - 'firewalld'
   - 'podman'
   - 'openssl'
   - 'python3-apt'
   - 'python3-passlib'
-  - 'httpd'
+  - 'apache2'
 
 webcred_user: "operator"
 webcred_passwd: ".passwdfile"
