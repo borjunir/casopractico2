@@ -27,3 +27,6 @@ dest_ssl_private_dir: "/etc/ssl/private"
 dest_sites_available: "/etc/apache2/sites-available"
 dest_webapp_dir: "/var/www/webapp"
 dest_site_available: "default-ssl.conf"
+
+registry_acr: "acrOnlyMe.azurecr.io"
+webappacr: "{{ registry_acr }}/webapp"
