@@ -23,17 +23,35 @@
     password: "{{ webcred_pass }}"
     mode: 0644
 
+- name: Copia htpasswd a webapp
+  become: true
+  copy:
+    src: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
+    dest: "{{ webapp_dir }}"
+
 - name: Copia index
   become: true
   copy:
     src: "index.html"
     dest: "{{ dest_webapp_dir }}"
 
+- name: Copia index
+  become: true
+  copy:
+    src: "index.html"
+    dest: "{{ webapp_dir }}"
+
 - name: Copia  de ficheros apache
   become: true
   template:
     src: "default-ssl.conf"
     dest: "{{ dest_sites_available }}"
+
+- name: Copia  de ficheros apache webapp
+  become: true
+  template:
+    src: "default-ssl.conf"
+    dest: "{{ webapp_dir }}"
 
 - name: Containerfile
   become: true

@@ -1,15 +1,49 @@
 ---
-- name: Gestion Maquina Virtual
+- name: Logeo en ACR y subida de imagenes
   hosts: webservers
   remote_user: "{{ vm_user }}"
   become: true
   vars_files:
     - vars/00_vars.yaml
-    - vars/secrets.yaml
   tasks:
-    - name: Actualizacion APT y creacion Dirs
-      include_tasks: tasks/00_GenWebApp.yaml
-    - name: Generacion apache
-      include_tasks: tasks/01_GenApache.yaml
-    - name: Generacion Certificado
-      include_tasks: tasks/02_GenSSL.yaml
+
+    - name: Copying folder into remote home/user
+      become: true 
+      copy:
+        src: "{{ source_image }}"
+        dest: "{{ dest_image }}"
+    
+    - name: Pull httpd image
+      containers.podman.podman_image:
+        name: httpd
+
+    - name: Create & Push image WebApp
+      containers.podman.podman_image:
+        name: "{{ image_name }}"
+        tag:  latest
+        push: yes
+        pull: no
+        path: "{{ dest_image }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        push_args:
+          dest: "{{ registry }}"
+        
+    - name: Pull image  MySQL 8
+      containers.podman.podman_image:
+        name: docker.io/library/mysql:8
+
+    - name: Tag image MySQL 8
+      containers.podman.podman_tag:
+        image: docker.io/library/mysql:8
+        target_names: "{{ image_name_db }}"
+      
+    - name: Push image MySQL 8
+      containers.podman.podman_image:
+        name:  "{{ image_name_db }}"
+        tag: latest
+        push: yes
+        username: "{{ username }}"
+        password: "{{ password }}"
+        push_args:
+          dest: "{{ registry }}"

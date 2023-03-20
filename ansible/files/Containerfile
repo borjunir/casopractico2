@@ -1,6 +1,5 @@
 FROM docker.io/ubuntu/apache2:latest
 COPY index.html /var/www/webapp/
-COPY .htaccess /var/www/webapp/
 COPY default-ssl.conf /etc/apache2/sites-available/
 COPY .htpasswd /var/www/webapp/
 COPY OnlyMe.key /etc/ssl/private/
