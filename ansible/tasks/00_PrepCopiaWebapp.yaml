@@ -1,0 +1,30 @@
+---
+- name: copia auth
+  become: true
+  copy:
+    src: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
+    dest: "{{ webapp_dir }}"
+
+- name: Copia index
+  become: true
+  copy:
+    src: "{{ dest_webapp_dir }}/index.html"
+    dest: "{{ webapp_dir }}"
+
+- name: Copia  de ficheros apache
+  become: true
+  copy:
+    src: "{{ dest_sites_available }}/default-ssl.conf"
+    dest: "{{ webapp_dir }}"
+
+- name: Copia  de ficheros apache
+  become: true
+  copy:
+    src: "{{ dest_ssl_private_dir }}/{{ ssl_key }}"
+    dest: "{{ webapp_dir }}"
+
+- name: Copia  de ficheros apache
+  become: true
+  copy:
+    src: "{{ dest_ssl_key_dir }}/{{ ssl_cert }}"
+    dest: "{{ webapp_dir }}"
