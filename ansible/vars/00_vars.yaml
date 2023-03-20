@@ -22,3 +22,8 @@ ssl_common_name: "OnlyMe"
 ssl_email_address: "borja.rodriguezlopezd077@comunidadunir.net"
 
 webapp_dir: "/home/{{ web_user }}/webapp"
+dest_ssl_key_dir: "/etc/ssl/certs"
+dest_ssl_private_dir: "/etc/ssl/private"
+dest_sites_available: "/etc/apache2/sites-available"
+dest_webapp_dir: "/var/www/webapp"
+dest_site_available: "default-ssl.conf"

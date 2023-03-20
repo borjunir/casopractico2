@@ -10,7 +10,7 @@
 - name: htpasswd basic auth
   become: true
   htpasswd:
-    path: "{{ webapp_dir }}/{{ webcred_passwd }}"
+    path: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
     name: "{{ webcred_user }}"
     password: "{{ webcred_pass }}"
     mode: 0644
@@ -19,16 +19,18 @@
   become: true
   copy:
     src: "index.html"
-    dest: "{{ webapp_dir }}"
+    dest: "{{ dest_webapp_dir }}"
 
 - name: Copia  de ficheros apache
   become: true
-  copy:
-    src: ".htaccess"
-    dest: "{{ webapp_dir }}"
+  template:
+    src: "default-ssl.conf"
+    dest: "{{ dest_sites_available }}"
 
-- name: Copia  de ficheros apache
+- name: Habilitar pagina ssl
   become: true
-  copy:
-    src: "apache2.conf"
-    dest: "{{ webapp_dir }}"
+  command: a2ensite default-ssl
+
+- name: Habilitar pagina ssl mod
+  become: true
+  command: a2enmod ssl
