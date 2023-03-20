@@ -13,5 +13,3 @@
       include_tasks: tasks/00_PrepApache.yaml
     - name: Generacion Certificado
       include_tasks: tasks/00_PrepSSL.yaml
-    - name: Copia ficheros generados
-      include_tasks: tasks/00_PrepCopiaWebapp.yaml

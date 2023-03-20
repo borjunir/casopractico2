@@ -20,3 +20,15 @@
     privatekey_path: "{{ dest_ssl_private_dir }}/{{ ssl_key }}"
     csr_path: "{{ webapp_dir }}/{{ ssl_csr }}"
     provider: selfsigned
+
+- name: Copia certs a webapp
+  become: true
+  copy:
+    src: "{{ dest_ssl_private_dir }}/{{ ssl_key }}"
+    dest: "{{ webapp_dir }}"
+
+- name: Copia certs a webapp
+  become: true
+  copy:
+    src: "{{ dest_ssl_key_dir }}/{{ ssl_cert }}"
+    dest: "{{ webapp_dir }}"
