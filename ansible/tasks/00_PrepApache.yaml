@@ -1,8 +1,16 @@
 ---
-- name: fw permitir
+- name: fw permitir 443
   become: true
   firewalld:
-    port: 8080/tcp
+    port: 443/tcp
+    permanent: true
+    immediate: true
+    state: enabled
+
+- name: fw permitir 80
+  become: true
+  firewalld:
+    port: 80/tcp
     permanent: true
     immediate: true
     state: enabled
@@ -27,6 +35,12 @@
     src: "default-ssl.conf"
     dest: "{{ dest_sites_available }}"
 
+- name: Containerfile
+  become: true
+  template:
+    src: "Containerfile"
+    dest: "{{ webapp_dir }}"
+
 - name: Habilitar pagina ssl
   become: true
   command: a2ensite default-ssl
@@ -34,3 +48,8 @@
 - name: Habilitar pagina ssl mod
   become: true
   command: a2enmod ssl
+
+- name: Reiniciar apache2
+  service:
+    name: apache2
+    state: restarted

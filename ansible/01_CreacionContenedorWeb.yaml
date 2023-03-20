@@ -8,10 +8,8 @@
     - vars/secrets.yaml
   tasks:
     - name: Actualizacion APT y creacion Dirs
-      include_tasks: tasks/00_PrepWebApp.yaml
+      include_tasks: tasks/00_GenWebApp.yaml
     - name: Generacion apache
-      include_tasks: tasks/00_PrepApache.yaml
+      include_tasks: tasks/01_GenApache.yaml
     - name: Generacion Certificado
-      include_tasks: tasks/00_PrepSSL.yaml
-    - name: Copia ficheros generados
-      include_tasks: tasks/00_PrepCopiaWebapp.yaml
+      include_tasks: tasks/02_GenSSL.yaml
