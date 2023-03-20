@@ -22,11 +22,11 @@
     name: "{{ webcred_user }}"
     password: "{{ webcred_pass }}"
 
-- name: Copia htpasswd a webapp
-  become: true
-  copy:
-    src: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
-    dest: "{{ webapp_dir }}"
+    #- name: Copia htpasswd a webapp
+    #  become: true
+    #  copy:
+    #    src: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
+    #    dest: "{{ webapp_dir }}"
 
 - name: Copia index
   become: true
