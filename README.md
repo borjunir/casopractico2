@@ -20,7 +20,7 @@ Este ejercicio tiene los siguientes objetivos:
     - Generamos la sshkey que utilizaremos para poder utilizar GITHUB desde el nodo de control
     - De la misma manera, generamos una clave publica y privada para el acceso a las maquinas virtuales que creemos en Azure
 
-## Funcionamiento en Azure
+## Funcionamiento de Terraform contra Azure - Despliegue de recursos
 
 Para poder generar los recursos de forma automatizada, hemos creado una carpeta **terraform** donde tenemos tres ficheros .tf:
 - **main.tf**: Nombramos los proveedores necesarios (azurerm)
@@ -34,10 +34,23 @@ Para poder generar los recursos de forma automatizada, hemos creado una carpeta 
     - Generamos el recurso de ip publica
     - Generamos el grupo de seguridad de red para crear las reglas asociadas para el acceso ssh y web. Como tenemos una ip publica fija, la incluiremos aqui.
     - Generaremos la asociacion entre el grupo de seguridad de red y el recurso de red para que las reglas nombradas arriba se apliquen a la tarjeta.
-
+- **output.tf**: Extrae los datos que necesitamos para posteriormente, como la ip publica.
 Antes del despliegue, ejecutaremos los siguientes comandos para mejorar la experiencia:
 - **terraform init**
 - **terraform fmt**: Adaptará los ficheros, ahorrando a terraform apply el trabajo. Si encuentra algún archivo que adaptar, mostrará los adaptados. Lo adecuado sería subir a git, una vez confirmado que el despliegue funciona, desde el nodo de control, esos ficheros adaptados.
 - **terraform validate**: Una segunda capa de confirmacion.
 - **terraform plan -out=casopractico2**: Extrae a un fichero un *plan* para poder usarlo en otros equipos.
-- **terraform apply "casopractico2" -auto-approve**: permite aplicar el plan sin necesidad de confirmacion manual
+- **terraform apply -auto-approve "casopractico2"**: permite aplicar el plan sin necesidad de confirmacion manual
+
+## Funcionamiento de Ansible - Despligue en maquina virtual
+
+Hemos utilizado 00_Preparacion.yaml, que llama a otros yaml ubicados en tasks.
+    - **00_PrepWebApp.yaml**: donde se preparan la instalacion de una serie de apps necesarias en la maquina virtual, asi como la creacion de directorios.
+    - **00_PrepApache.yaml**: apertura fw y puertos, la generacion de htpasswd para la autenticacion basica (lo guardará en /var/www/webapp) (hemos puesto en local un fichero secrets.yaml con las passwords que no tienen que aparecer en el codigo), habilitacion de la web disponible (sites-available), habilitacion del modulo ssl.
+    - **00_PrepSSL.yaml**: lanza peticiones de autofirma y ubica los ficheros en el sitio que les corresponde (/etc/ssl/certs y /etc/ssl/private)
+
+Con esto ya tenemos funcionando un Apache2 en la maquina virtual para poder usar un contenedor y subirlo a ACR:
+    - Hemos acumulado los ficheros nombrados arriba en /home/AzureUser/webapp (Maquina virtual) ademas del Containerfile.
+    - Estos ficheros tienen lo necesario para que un apache funcione
+    - En el container file cogemos una imagen de contenedor que corre en ubuntu con apache2
+    - Ejecutamos lo mencionado en el documento explicativo, subiendolo a nuestro Container Registry.
