@@ -37,7 +37,7 @@
 
 - name: Containerfile
   become: true
-  template:
+  copy:
     src: "Containerfile"
     dest: "{{ webapp_dir }}"
 
