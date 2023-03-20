@@ -25,6 +25,8 @@
 
 - name: Copia htpasswd a webapp
   become: true
+  become_user: root
+  become_method: sudo
   copy:
     src: "{{ dest_webapp_dir }}/{{ webcred_passwd }}"
     dest: "{{ webapp_dir }}"
